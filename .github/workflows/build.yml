@@ -19,15 +19,14 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew || true
-
-    - name: Build APK with Gradle
+    - name: Build APK inside aplicativo folder
+      working-directory: ./aplicativo
       run: |
+        chmod +x gradlew || true
         if [ -f "gradlew" ]; then
           ./gradlew assembleDebug
         else
-          gradle assembleDebug -p aplicativo
+          gradle assembleDebug
         fi
 
     - name: Upload APK
