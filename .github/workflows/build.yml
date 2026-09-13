@@ -20,4 +20,10 @@ jobs:
         distribution: 'temurin'
 
     - name: Build APK
-      run: gradle assembleDebug
+      run: gradle assembleDebug -p app
+
+    - name: Upload APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: finora-app-debug
+        path: app/build/outputs/apk/debug/*.apk
