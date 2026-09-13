@@ -19,11 +19,19 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Build APK
-      run: gradle assembleDebug -p aplicativo
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew || true
+
+    - name: Build APK with Gradle
+      run: |
+        if [ -f "gradlew" ]; then
+          ./gradlew assembleDebug
+        else
+          gradle assembleDebug -p aplicativo
+        fi
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
         name: finora-app-debug
-        path: aplicativo/build/outputs/apk/debug/*.apk
+        path: '**/build/outputs/apk/debug/*.apk'
