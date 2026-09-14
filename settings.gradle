@@ -1,5 +1,3 @@
-// Archivo: settings.gradle.kts (na raiz do projeto)
-
 pluginManagement {
     repositories {
         google()
@@ -17,4 +15,5 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Finora"
+
 include(":app")
